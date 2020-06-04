@@ -1,0 +1,25 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" color="primary">
+      <mat-icon [ngStyle]="{'color':'white'}" aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
+    <span><img src="./assets/afl.png" height="40"></span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container class="db-container">
+  <mat-sidenav #drawer mode="side" opened role="navigation">
+    <mat-nav-list>
+      <a mat-list-item routerLink=''>Home</a>
+      <a mat-list-item routerLink='teamranks'>Ladder</a>
+      <a mat-list-item routerLink='/games'>Games</a>
+      <a mat-list-item routerLink='/team-comparison'>Team Comparison</a>
+      <!-- <a mat-list-item routerLink='/'>Favorite</a> -->
+      <a mat-list-item routerLink='/prediction'>Prediction</a>
+      <!-- <a mat-list-item routerLink='/'>Result</a> -->
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

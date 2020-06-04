@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Home",
+    "url": "/",
+    "icon": ""
+  },
+  {
+    "name": "Dashboard",
+    "url": "/",
+    "icon": ""
+  },
+  {
+    "name": "Details",
+    "url": "/",
+    "icon": ""
+  },
+  {
+    "name": "Favorite",
+    "url": "/",
+    "icon": ""
+  },
+  {
+    "name": "Player",
+    "url": "/",
+    "icon": ""
+  },
+  {
+    "name": "Game Calendar",
+    "url": "/",
+    "icon": ""
+  },
+  {
+    "name": "Result",
+    "url": "/",
+    "icon": ""
+  }
+]

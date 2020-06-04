@@ -1,0 +1,52 @@
+<div class="table-responsive">
+  <h4 [ngStyle]="{'text-align': 'center'}"> Predictions </h4>
+
+  <div class="selection-window">
+    My Favorite Team: 
+    <select [ngModel]="selectedTeam" (ngModelChange)="onChangeObj($event, 'team')" name="team">
+      <option [ngValue]="t" *ngFor="let t of teams">{{t.name}}</option>
+    </select>
+    <button type="button" [ngStyle]="{'background-color':'#1976d2', 'color': 'white', 'margin-left': '5px' }" class="btn btn-sm" (click)="showFilter()">Go</button>
+  </div>
+
+  <table class="table table-hover" matSort (matSortChange) = "sortTips($event)">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Source</th>
+        <th mat-sort-header="date">Date</th>
+        <th mat-sort-header="hteam" scope="col">Home</th>
+        <th mat-sort-header="ateam" scope="col">Away</th>
+        <th mat-sort-header="bits" scope="col">Bits</th>
+        <th mat-sort-header="Confidence" scope="col"><a [class.active]="sortBy==='homescore'" (click)="sortBy='homescore'">Confidence</a></th>
+        <th mat-sort-header="margin" scope="col">margin</th>
+        <th mat-sort-header="updated">Updated</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+       <tr scope="row" *ngFor="let t of visibleTips" routerLink="/">
+          <td>{{ t.source }}</td>
+          <td>{{ t.date }}</td>
+          <ng-container *ngFor="let team of teams">
+            <ng-container  *ngIf="team.id === t.hteamid">
+              <td>
+                <img height="40" width="40" src="https://squiggle.com.au/{{team.logo}}">
+              </td>
+            </ng-container>
+          </ng-container>
+          <ng-container *ngFor="let team of teams">
+            <ng-container  *ngIf="team.id === t.ateamid">
+              <td>
+                <img height="40" width="40" src="https://squiggle.com.au/{{team.logo}}">
+              </td>
+            </ng-container>
+          </ng-container>
+          <td>{{ t.bits }}</td>
+          <td>{{ t.confidence }}</td>
+          <td>{{ t.margin }}</td>
+          <td>{{ t.updated }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+

@@ -1,0 +1,134 @@
+<div class="table-responsive" *ngFor="let s of standings">
+  <div *ngIf="currTeam.id == s.id">
+    <div class="team-profile">
+      <form method="post">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="profile-img">
+              <img src="https://squiggle.com.au/{{currTeam.logo}}">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="profile-head">
+              <h5 class="title">
+                  {{currTeam.name}}
+              </h5>
+              <h6>
+                  Rankings: {{s.rank}} / {{standings.length}}
+              </h6>
+              <div class="row">
+                <div class="col-md-6">
+                  <p class="proile-rating">Points : <span>{{s.pts}}</span></p>
+                  <p class="proile-rating">Wins : <span>{{s.wins}}</span></p>
+                  <p class="proile-rating">Losses : <span>{{s.losses}}</span></p>
+                  <p class="proile-rating">Draws : <span>{{s.draws}}</span></p>
+                  <p class="proile-rating">Goals : <span>{{s.goals_for}}</span></p>
+                  <p class="proile-rating">Percentage : <span>{{s.percentage | number }}%</span></p>
+                </div>
+                <div class="col-md-6">
+                  <p class="proile-rating">Against : <span>{{s.against}}</span></p>
+                  <p class="proile-rating">Goals Against : <span>{{s.goals_against}}</span></p>
+                  <p class="proile-rating">Behinds Against : <span>{{s.behinds_against}}</span></p>
+                  <p class="proile-rating">For : <span>{{s.for}}</span></p>
+                  <p class="proile-rating">Goals For : <span>{{s.goals_for}}</span></p>
+                  <p class="proile-rating">Behinds For : <span>{{s.behinds_for}}</span></p>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          <div class="col-md-2">
+            <!-- <input type="submit" class="profile-back-btn" name="btnAddMore" value="Back" (click)="goBack()"/> -->
+            <button type="button" [ngStyle]="{'background-color':'#1976d2', 'color': 'white' }" class="btn btn-md btn-block" (click)="goBack()">BACK</button>
+          </div>
+        </div>
+        <div class="row">
+          <ul class="nav nav-pills" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active custome-button" id="games-completed-tab" data-toggle="tab" href="#GamesCompleted" role="tab" aria-controls="GamesCompleted" aria-selected="true">Games Completed</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link custome-button" id="games-scheduled-tab" data-toggle="tab" href="#ScheduledGames" role="tab" aria-controls="ScheduledGames" aria-selected="false">All Scheduled Games</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link custome-button" id="venues-win-tab" data-toggle="tab" href="#VenuesWin" role="tab" aria-controls="VenuesWin" aria-selected="false">All Venues Win</a>
+            </li>
+          </ul>
+        </div>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="GamesCompleted" role="tabpanel" aria-labelledby="games-completed-tab">
+            <div class="row">
+              <table class="table table-hover">
+                <tbody *ngFor="let game of completedGames">
+                  <tr *ngIf = "currTeam.id === game.hteamid || currTeam.id === game.ateamid" routerLink="/game/{{game.id}}">
+                    <div *ngFor = "let team of teams">
+                      <div *ngIf = "game.hteamid === team.id">
+                        <img height="40" width="40" src="https://squiggle.com.au/{{team.logo}}">
+                      </div>
+                    </div>
+                    <td><a class="team-name">{{game.hteam}}</a></td>
+                    <td>{{game.hscore}} : {{game.ascore}}</td>
+                    <td><a class="team-name">{{game.ateam}}</a></td>
+                    <div *ngFor = "let team of teams">
+                      <div *ngIf = "game.ateamid === team.id">
+                        <img height="40" width="40" src="https://squiggle.com.au/{{team.logo}}">
+                      </div>
+                    </div>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="ScheduledGames" role="tabpanel" aria-labelledby="games-scheduled-tab">
+            <div class="row">
+              <table class="table table-hover">
+                <tbody *ngFor="let game of scheduledGames">
+                  <tr *ngIf = "currTeam.id === game.hteamid || currTeam.id === game.ateamid" routerLink="/game/{{game.id}}">
+                    <div *ngFor = "let team of teams">
+                      <div *ngIf = "game.hteamid === team.id">
+                        <img height="40" width="40" src="https://squiggle.com.au/{{team.logo}}">
+                      </div>
+                    </div>
+                    <td><a class="team-name">{{game.hteam}}</a></td>
+                    <td>{{game.hscore}} : {{game.ascore}}</td>
+                    <td><a class="team-name">{{game.ateam}}</a></td>
+                    <div *ngFor = "let team of teams">
+                      <div *ngIf = "game.ateamid === team.id">
+                        <img height="40" width="40" src="https://squiggle.com.au/{{team.logo}}">
+                      </div>
+                    </div>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="tab-pane fade show active" id="VenuesWin" role="tabpanel" aria-labelledby="venues-win-tab">
+            <div class="row">
+              <table class="table table-hover">
+                <tbody *ngFor="let game of teamVenuesWinGames">
+                  <tr *ngIf = "currTeam.id === game.hteamid || currTeam.id === game.ateamid" routerLink="/game/{{game.id}}">
+                    <div *ngFor = "let team of teams">
+                      <div *ngIf = "game.hteamid === team.id">
+                        <img height="40" width="40" src="https://squiggle.com.au/{{team.logo}}">
+                      </div>
+                    </div>
+                    <td>Venue: {{game.venue}}</td>
+                    <td><a class="team-name">{{game.hteam}}</a></td>
+                    <td>{{game.hscore}} : {{game.ascore}}</td>
+                    <td><a class="team-name">{{game.ateam}}</a></td>
+                    <div *ngFor = "let team of teams">
+                      <div *ngIf = "game.ateamid === team.id">
+                        <img height="40" width="40" src="https://squiggle.com.au/{{team.logo}}">
+                      </div>
+                    </div>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+      </div>
+    </form>     
+  </div>
+  
+</div>
+

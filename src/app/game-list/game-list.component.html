@@ -1,0 +1,67 @@
+<div class="table-responsive">
+  <h4 [ngStyle]="{'text-align': 'center'}"> AFL Season Games List </h4>
+  <div class="selection-window">
+    Year: 
+    <select [ngModel]="selectedYear" (ngModelChange)="onChangeObj($event, 'year')" name="year">
+      <option [ngValue]="y" *ngFor="let y of years">{{y}}</option>
+    </select>
+    Category: 
+    <select [ngModel]="selectedCategory" (ngModelChange)="onChangeObj($event,'category')" name="category">
+      <option [ngValue]="c" *ngFor="let c of categories">{{c}}</option>
+    </select>
+    <ng-container *ngIf="selectedCategory == 'Round'">
+      Rounds: 
+      <select [ngModel]="selectedRound" (ngModelChange)="onChangeObj($event, 'round')" name="round">
+        <option [ngValue]="r" *ngFor="let r of rounds">{{r}}</option>
+      </select>
+    </ng-container>
+    Sort By: 
+    <select [ngModel]="selectedSortBy" (ngModelChange)="onChangeObj($event, 'sortBy')" name="sortBy">
+      <option [ngValue]="s" *ngFor="let s of sortsBy">{{s}}</option>
+    </select>
+    <button type="button" [ngStyle]="{'background-color':'#1976d2', 'color': 'white', 'margin-left': '5px' }" class="btn btn-sm" (click)="showFilter()">Go</button>
+  </div>
+  
+
+  <table class="table table-hover" matSort (matSortChange) = "sortGame($event)">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">GameID</th>
+        <th mat-sort-header="date">Date</th>
+        <th mat-sort-header="hteam" scope="col">Home</th>
+        <th scope="col"></th>
+        <th mat-sort-header="hscore" scope="col"><a [class.active]="sortBy==='homescore'" (click)="sortBy='homescore'">Score</a></th>
+        <th scope="col"></th>
+        <th mat-sort-header="ascore" scope="col">Score</th>
+        <th scope="col"></th>
+        <th mat-sort-header="ateam" scope="col">Away</th>
+      </tr>
+    </thead>
+    <tbody>
+       <tr scope="row" *ngFor="let g of visibleGames" routerLink="/game/{{g.id}}">
+          <td>{{ g.id }}</td>
+          <td>{{ g.date }}</td>
+          <ng-container *ngFor="let team of teams">
+            <ng-container  *ngIf="team.id === g.hteamid">
+              <td>{{team.name}}</td>
+              <td>
+                <img height="40" width="40" src="https://squiggle.com.au/{{team.logo}}">
+              </td>
+            </ng-container>
+          </ng-container>
+          <td>{{g.hscore}}</td>
+          <td> - </td>
+          <td>{{g.ascore}}</td>
+          <ng-container *ngFor="let team of teams">
+            <ng-container  *ngIf="team.id === g.ateamid">
+              <td>
+                <img height="40" width="40" src="https://squiggle.com.au/{{team.logo}}">
+              </td>
+              <td>{{team.name}}</td>
+            </ng-container>
+          </ng-container>
+      </tr>
+    </tbody>
+  </table>
+</div>
+

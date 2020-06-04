@@ -1,0 +1,62 @@
+<div class="container">
+  <table>
+    <tr>
+      <th colspan="5;text-align:center;">{{currGame?.updated}}</th>
+    </tr>
+    <tr>
+      <th>HOME</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>AWAY</th>
+    </tr>
+    <br>
+    <tr></tr>
+    <tr>
+      <td>
+        <div *ngFor="let team of teams">
+          <div *ngIf="currGame.hteamid===team.id">
+            <img height="70" width="70" src="https://squiggle.com.au/{{team.logo}}">
+          </div>
+        </div>
+      </td>
+      <th>{{currGame.hscore}}</th>
+      <th>-</th>
+      <th>{{currGame.ascore}}</th>
+      <td>
+        <div *ngFor="let team of teams">
+          <div *ngIf="currGame.ateamid===team.id">
+            <img height="70" width="70" src="https://squiggle.com.au/{{team.logo}}">
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <div *ngFor="let team of teams">
+        <div *ngIf="currGame.hteamid===team.id">{{team.hteam}}</div>
+      </div>
+      <td></td>
+      <td></td>
+      <td></td>
+      <div *ngFor="let team of teams">
+        <div *ngIf="currGame.ateamid===team.id">{{team.ateam}}</div>
+      </div>
+    </tr>
+    <br>
+    <tr>
+    <th></th>
+    <th>{{currGame.hgoals}}</th>
+    <td>Goals</td>
+    <th>{{currGame.agoals}}</th>
+    <br>
+    <tr>
+    <th></th>
+    <th>{{currGame.hbehinds}}</th>
+    <td>Behinds</td>
+    <th>{{currGame.abehinds}}</th>
+    </tr>
+  </table>
+  <br>
+  <button type="button" class="btn btn-primary btn-lg btn-block" (click)="goBack()">BACK</button>
+
+</div>

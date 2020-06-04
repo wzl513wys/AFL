@@ -1,0 +1,73 @@
+<div class="container">
+  
+  <div class="selection-window">
+    <h4>Team Comparison</h4>
+    Compare
+    <select [ngModel]="selectedTeam1" (ngModelChange)="onChangeObj($event, 1)" name="sel1">
+      <option [ngValue]="i" *ngFor="let i of teams">{{i.name}}</option>
+    </select>
+    With 
+    <select [ngModel]="selectedTeam2" (ngModelChange)="onChangeObj($event, 2)" name="sel2">
+      <option [ngValue]="i" *ngFor="let i of teams">{{i.name}}</option>
+    </select>
+  </div>
+  
+
+  <div class="table-responsive" *ngIf="team1Rank && team2Rank">
+    <table class="table table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Team One</th>
+          <th scope="col">Team Two</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr scope="row">
+          <td></td>
+          <td><img height="40" width="40"
+            src="https://squiggle.com.au/{{selectedTeam1.logo}}">
+          </td>
+          <td><img height="40" width="40"
+            src="https://squiggle.com.au/{{selectedTeam2.logo}}">
+          </td>
+        </tr>
+        <tr scope="row">
+          <td></td>
+          <td class="team-name">{{ selectedTeam1.name }}</td>
+          <td class="team-name">{{ selectedTeam2.name }}</td>
+        </tr>
+        <tr scope="row">
+          <td>Position</td>
+          <td class="team1">{{ team1Rank.rank }}</td>
+          <td class="team2">{{ team2Rank.rank }}</td>
+        </tr>
+        <tr scope="row">
+          <td>Points</td>
+          <td class="team1">{{ team1Rank.pts }}</td>
+          <td class="team2">{{ team2Rank.pts }}</td>
+        </tr>
+        <tr scope="row">
+          <td>Wins</td>
+          <td class="team1">{{ team1Rank.wins }}</td>
+          <td class="team2">{{ team2Rank.wins }}</td>
+        </tr>
+        <tr scope="row">
+          <td>Draws</td>
+          <td class="team1">{{ team1Rank.draws }}</td>
+          <td class="team2">{{ team2Rank.draws }}</td>
+        </tr>
+        <tr scope="row">
+          <td>Losses</td>
+          <td class="team1">{{ team1Rank.losses }}</td>
+          <td class="team2">{{ team2Rank.losses }}</td>
+        </tr>
+        <tr scope="row">
+          <td>Goals For</td>
+          <td class="team1">{{ team1Rank.goals_for }}</td>
+          <td class="team2">{{ team2Rank.goals_for }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="table-responsive">
+  <h4 [ngStyle]="{'text-align': 'center'}">{{year}} AFL Season Teams </h4>
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col">View Details</th>
+      </tr>
+    </thead>
+    <tbody>
+       <tr scope="row" *ngFor="let team of teams">
+          <td>{{ team.id }}</td>
+          <td><img height="40" width="40"
+            src="https://squiggle.com.au/{{team.logo}}">
+          </td>
+          <td class="team-name">{{ team.name }}</td>
+          <td>
+            <button routerLink="" [ngStyle]="{'background-color':'#1976d2', 'color': 'white' }" class="btn round-corner " type="button" (click)="navigateToDetail(team.id)">
+              View Details<i class="fas fa-info-circle"></i>
+            </button>
+          </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+

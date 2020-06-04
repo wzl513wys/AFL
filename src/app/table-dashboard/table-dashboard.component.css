@@ -1,0 +1,17 @@
+mat-toolbar {
+  background-color: #1565c0
+}
+
+button{
+  border-radius: 50px;
+}
+@media (max-width:1280px){
+  button{
+      font-size: 13px;
+  }
+}
+
+.db-container {
+  height: 100%;
+  margin: 10px;
+}

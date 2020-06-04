@@ -1,0 +1,21 @@
+button{
+  border-radius: 50px;
+}
+@media (max-width:1280px){
+  button{
+      font-size: 13px;
+  }
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}

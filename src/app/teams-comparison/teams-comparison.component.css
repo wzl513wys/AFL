@@ -1,0 +1,21 @@
+.selection-window {
+  padding: 2%;
+  text-align: center
+}
+.team-name {
+	/* font-size: 110%; */
+	/* font-weight: bold; */
+	text-shadow: 0 0 3px #999, -4px 0 1px #FFF, 4px 0 1px #FFF, 0 -4px 1px #FFF, 0 4px 1px #FFF, 4px 4px 1px #FFF, -4px -4px 1px #FFF, 4px -4px 1px #FFF, -4px 4px 1px #FFF;
+	letter-spacing: -1px;
+	line-height:115%;
+	/* display: flex; */
+  justify-content: space-evenly;
+  /* align-items: center;
+  text-align: center; */
+}
+.team1 {
+  color: #00c853
+}
+.team2 {
+  color: #e65100
+}

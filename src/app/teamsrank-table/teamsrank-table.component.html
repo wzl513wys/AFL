@@ -1,0 +1,46 @@
+<div class="table-responsive">
+  <h4 [ngStyle]="{'text-align': 'center'}"> {{years[0]}} AFL Season Ladder sorted by Premiership Points </h4>
+  
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Position</th>
+        <th scope="col"></th>
+        <th scope="col">Team</th>
+        <th scope="col">ID</th>
+        <th scope="col">Points</th>
+        <th scope="col">Wins</th>
+        <th scope="col">Losses</th>
+        <th scope="col">Played</th>
+        <th scope="col">For</th>
+        <th scope="col">Against</th>
+        <th scope="col">Percentage</th>
+      </tr>
+    </thead>
+    <tbody>
+       <tr scope="row" *ngFor="let item of standings" routerLink="/team-detail/{{item.id}}">
+          <td>{{ item.rank }}</td>
+          <ng-container *ngFor="let team of teams">
+            <td *ngIf="team.id === item.id">
+              <img  height="40" width="40" src="https://squiggle.com.au/{{team.logo}}">
+            </td>
+          </ng-container>
+          <td class="team-name">{{ item.name }}</td>
+          <td>{{ item.id }}</td>
+          <td>{{ item.pts }}</td>
+          <td>{{ item.wins }}</td>
+          <td>{{ item.losses }}</td>
+          <td>{{ item.played }}</td>
+          <td>{{ item.goals_for }}</td>
+          <td>{{ item.goals_against }}</td>
+          <td>{{ item.percentage | number }}%</td>
+          <!-- <td>
+            <button routerLink="" class="btn btn-success round-corner " type="button" (click)="navigateToDetail(item.team.id)">
+              View Details<i class="fas fa-info-circle"></i>
+            </button>
+          </td> -->
+      </tr>
+    </tbody>
+  </table>
+</div>
+
